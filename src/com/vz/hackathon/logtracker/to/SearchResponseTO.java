@@ -1,14 +1,23 @@
 package com.vz.hackathon.logtracker.to;
 
-import java.util.List;
 
 public class SearchResponseTO {
 
-	private List<String> errorLog;
+	private String errorLog;
 	private String keyword;
 	private int count;
+	private boolean mailSent;
+	private String alertType;
 
 
+
+	public boolean isMailSent() {
+		return mailSent;
+	}
+
+	public void setMailSent(boolean mailSent) {
+		this.mailSent = mailSent;
+	}
 
 	public String getKeyword() {
 		return keyword;
@@ -26,11 +35,20 @@ public class SearchResponseTO {
 		this.count = i;
 	}
 
-	public List<String> getErrorLog() {
+	public String getErrorLog() {
 		return errorLog;
 	}
 
-	public void setErrorLog(List<String> errorLog) {
+	public void setErrorLog(String errorLog) {
 		this.errorLog = errorLog;
 	}
+
+	public String getAlertType() {
+		return alertType;
+	}
+
+	public void setAlertType(String alertType) {
+		this.alertType = alertType;
+	}
+
 }

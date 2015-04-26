@@ -11,21 +11,17 @@ import javax.servlet.http.HttpServletResponse;
 import com.vz.hackathon.logtracker.log.LogGenerator;
 
 
-@WebServlet("/LogGenerator")
-public class LogGeneratorServlet extends HttpServlet {
+@WebServlet("/LogStop")
+public class LogStopServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
-	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-			throws ServletException, IOException {
-		
-				LogGenerator.getInstance().start();
+
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doPost(request, response);
 	}
-	
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-			throws ServletException, IOException {
-		doGet(req, resp);
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
+		LogGenerator.getInstance().stopLogGenerator();
 	}
 
 }

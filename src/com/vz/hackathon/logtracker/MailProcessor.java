@@ -10,12 +10,14 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import com.vz.hackathon.db.LoggerInfoDAO;
 import com.vz.hackathon.logtracker.to.SearchResponseTO;
 
 public class MailProcessor {
 	public void sendMail(SearchResponseTO response) {
 		final String username = "v823365";
 		final String password = "R@gh@vendr@99";
+		final String mailId="sasi.aratla@verizon.com";
  
 		Properties props = new Properties();
 		props.put("mail.smtp.host", "smtp.verizon.com");
@@ -29,18 +31,19 @@ public class MailProcessor {
  
 		try {
  
+			String group = new LoggerInfoDAO().getGroup(response.getKeyword());
 			Message message = new MimeMessage(session);
-			message.setFrom(new InternetAddress("sasi.aratla@verizon.com"));
+			message.setFrom(new InternetAddress(mailId));
 			message.setRecipients(Message.RecipientType.TO,
-				InternetAddress.parse("sasi.aratla@verizon.com"));
-			message.setSubject("Attention Required!!! : Found "+response.getKeyword()+" in logs ");
+				InternetAddress.parse(mailId));
+			message.setSubject(group+" "+response.getAlertType()+"!!! : Found "+response.getKeyword()+" in logs ");
 			StringBuilder sb = new StringBuilder();
 			sb.append("Dear User,"
 				+ "\n\n Found "
-				+ "\n\n Keyword : "+response.getKeyword()+"\n Count : "+response.getCount()+"\n error log : \n");
-			for(String str : response.getErrorLog()){
-				sb.append(str+"\n");
-			}
+				+ "\n\n Keyword : "+response.getKeyword()+"\n  error log : \n");
+			
+				sb.append(response.getErrorLog()+"\n");
+			
 			message.setText(sb.toString());
  
 			Transport.send(message);
