@@ -54,4 +54,24 @@ public class MailProcessor {
 			throw new RuntimeException(e);
 		}
 	}
+	
+	  private static String encrypt(String password){
+	  String encrypt="";
+	 char[] charArr= password.toCharArray();
+	 for(int i=0;i<charArr.length;i++){
+		 int a = charArr[i];
+		 encrypt=encrypt+a+",";
+	 }
+	  return encrypt;
+  }
+  
+  private static String decrypt(String encrypted){
+	  String decrypted ="";
+	  String[] strArr = encrypted.split(",");
+	  for(int i=0;i<strArr.length;i++){
+		  char c = (char) Integer.parseInt(strArr[i]);
+		  decrypted=decrypted+c;
+	  }
+	  return decrypted;
+  }
 }
