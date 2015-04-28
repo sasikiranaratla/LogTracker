@@ -15,12 +15,12 @@ import com.vz.hackathon.logtracker.to.SearchResponseTO;
 
 public class MailProcessor {
 	public void sendMail(SearchResponseTO response) {
-		final String username = "v823365";
-		final String password = "R@gh@vendr@99";
-		final String mailId="sasi.aratla@verizon.com";
+		final String username = "";
+		final String password = "";
+		final String mailId="";
  
 		Properties props = new Properties();
-		props.put("mail.smtp.host", "smtp.verizon.com");
+		props.put("mail.smtp.host", "");
  
 		Session session = Session.getInstance(props,
 		  new javax.mail.Authenticator() {
